@@ -21,11 +21,24 @@
       when: action_create_or_terminate == "create"
       register: ec2_output
 
-    - name:  print the creation ec2_output
-      debug:
-        msg: "{{ item.instances[0].private_ip_address }}"
+    # - name:  print the creation ec2_output
+    #   debug:
+    #     msg: "{{ item.instances[0].private_ip_address }}"
+    #   loop: "{{ ec2_output.results }}"
+    - name:  Create r53 records
+      amazon.aws.route53:
+        state: present
+        zone: "{{ domain_name }}"
+        record: "{{ item.item }}-{{domain_name}}" #mongodb.janakiraodevops.online 
+        type: A
+        ttl: 1
+        value: "{{ item.instances[0].private_ip_address }}"
+        overwrite:  true 
       loop: "{{ ec2_output.results }}"
-  
+      when: action_create_or_terminate == "create" 
+     
+
+
     
 
   
