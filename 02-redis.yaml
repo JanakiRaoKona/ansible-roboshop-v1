@@ -5,11 +5,6 @@
     - name: disbale redis 
       command: dnf module disable redis -y
 
-    - name: Enable redis service 
-      ansible.builtin.service:
-        name: redis:7 
-        enabled: yes
-
     - name:  Install redis 
       ansible.builtin.package:
         name: redis 
