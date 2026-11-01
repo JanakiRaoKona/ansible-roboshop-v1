@@ -23,7 +23,7 @@
 
     - name:  print the creation ec2_output
       debug:
-        msg: "{{ item.instances[0] }}"
+        msg: "{{ item.instances[0].private_ip_address }}"
       loop: "{{ ec2_output.results }}"
   
     
