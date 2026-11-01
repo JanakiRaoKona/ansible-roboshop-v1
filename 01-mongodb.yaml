@@ -13,7 +13,7 @@
     - name:  Install mongodb 
       ansible.builtin.package:
         name: mongodb-org
-        state: started
+        state: present
 
     - name: Enable and start the mongodb service 
       ansible.builtin.service:
