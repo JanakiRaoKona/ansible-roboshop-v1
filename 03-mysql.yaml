@@ -16,10 +16,14 @@
         state: started
         enabled: yes
 
-    - name: Update MySQL root password
-      ansible.mysql.mysql_user:
-        name: root
-        password: "{{ mysql_root_password }}"
-        host_all: true
-        check_implicit_admin: true
-      state: present
+    # - name: Create MySQL root password
+    #   ansible.mysql.mysql_user:
+    #     name: root
+    #     password: "{{ mysql_root_password }}"
+    #     host_all: true
+    #     check_implicit_admin: true
+    #   state: present
+
+    - name: create Mysql root password
+      command:  "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
+      
