@@ -1,6 +1,7 @@
 - name: Create Ec2 instances and Route53 records 
   hosts: local 
   connection: local
+  become: yes
   vars:
     instances: ["mongodb", "redis" , "mysql", "rabbitmq"]
     action_create_or_terminate: create 
