@@ -22,4 +22,4 @@
         password: "{{ mysql_root_password }}"
         host_all: true
         check_implicit_admin: true
-        state: present
+      state: present
