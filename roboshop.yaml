@@ -19,6 +19,11 @@
           - "roboshop-{{ item }}" 
       loop: "{{ instances }}"
       when: action_create_or_terminate == "create"
+      register: ec2_output
+
+    - name:  print the creation ec2_output
+      debug:
+        msg: "{{ ec2_output }}"
   
     
 
