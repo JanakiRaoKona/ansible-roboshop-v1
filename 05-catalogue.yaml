@@ -14,7 +14,7 @@
     #     enabled: yes   //  not availale module 
     
     - name: Install nodejs
-      ansible.builtin.service:
+      ansible.builtin.dnf:
         name: nodejs 
         state: started 
 
