@@ -65,20 +65,29 @@
         dest: /app
         remote_src: yes
     
+    
+    - name:  maven version without JAVA_HOME
+      command: mvn --version
+      args:
+        chdir: /app 
+      register: maven_default_version
+    
+    - name: print the maven version 
+      debug:  
+        msg: "{{ maven_default_version.stdout_lines }}"
+    
     - name: install dependencies 
       command: mvn clean package
       args:
         chdir: /app 
-
     
 
+    # - name: daemon reload
+    #   ansible.builtin.systemd_service:
+    #     daemon_reload: true
 
-    - name: daemon reload
-      ansible.builtin.systemd_service:
-        daemon_reload: true
-
-    - name: Enable and restart the shipping service 
-      ansible.builtin.service:
-        name: shipping
-        state: restarted
-        enabled: yes
+    # - name: Enable and restart the shipping service 
+    #   ansible.builtin.service:
+    #     name: shipping
+    #     state: restarted
+    #     enabled: yes
