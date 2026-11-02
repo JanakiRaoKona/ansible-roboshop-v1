@@ -1,6 +1,15 @@
 ansible_user: ec2-user 
 ansible_password: DevOps321 
 
-mongodb_host: mongodb.janakiraodevops.online 
-redis_host: redis.janakiraodevops.online 
+mongodb_host: mongodb.janakiraodevops.online
+redis_host: redis.janakiraodevops.online  
+mysql_host: mysql.janakiraodevops.online 
+rabbitmq_host: rabbitmq.janakiraodevops.online 
+
 catalogue_host: catalogue.janakiraodevops.online 
+user_host: user.janakiraodevops.online 
+cart_host: cart.janakiraodevops.online 
+shipping_host: shipping.janakiraodevops.online
+payment_host: payment.janakiraodevops.online
+
+frontend_host: frontend.janakiraodevops.online
