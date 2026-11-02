@@ -5,12 +5,13 @@
     - name:  enable maven 3.9 
       command: dnf module enable maven:3.9 -y
 
-    - name: Install java 25 and maven
+    - name: Install java 25 , mysql and maven
       dnf: 
         name: 
           - maven
           - java-25-openjdk-devel
           - maven-openjdk25 # if install this no need to set JAVA_HOME
+          - mysql
         state: present
 
 
@@ -76,10 +77,23 @@
       debug:  
         msg: "{{ maven_default_version.stdout_lines }}"
     
-    - name: install dependencies 
+    - name: build shipping 
       command: mvn clean package
       args:
         chdir: /app 
+
+    - name:  move shipping.jr
+      command: mv target/shipping.jar shipping.jar
+      args:
+        chdir: /app 
+
+    - name: Check mysql cities data exist or not 
+      command: mysql -h "{{ mysql_host }}" -u root -p{{ mysql_root_password }} -N -B -e "SELECT COUNT(*) FROM cities.cities;"
+      register: cities_count 
+
+    - name: print cities count 
+      debug: 
+        msg: "{{ cities_count }}"
     
 
     # - name: daemon reload
