@@ -1,4 +1,4 @@
 ansible_user: ec2-user 
 ansible_password: DevOps321 
-mongodb_host: janakiraodevops.online 
+mongodb_host: mongodb.janakiraodevops.online 
 
