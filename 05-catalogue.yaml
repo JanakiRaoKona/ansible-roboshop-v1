@@ -83,6 +83,11 @@
       debug:
         msg: "{{ product_count }}"
 
+    - name: Load the product
+      shell: mongosh --host <MONGODB-SERVER-IPADDRESS> </app/db/master-data.js
+      when: product_count.stdout | int == 0
+
+
 
     
     
