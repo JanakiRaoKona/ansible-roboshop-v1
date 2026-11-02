@@ -16,7 +16,7 @@
     - name: Install nodejs
       ansible.builtin.dnf:
         name: nodejs 
-        state: started 
+        state: present 
 
     - name: Create a user 'roboshop' with a /app directory
       ansible.builtin.user:
