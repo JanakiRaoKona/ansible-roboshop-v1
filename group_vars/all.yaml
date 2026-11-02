@@ -3,3 +3,4 @@ ansible_password: DevOps321
 
 mongodb_host: mongodb.janakiraodevops.online 
 redis_host: redis.janakiraodevops.online 
+catalogue_host: catalogue.janakiraodevops.online 
