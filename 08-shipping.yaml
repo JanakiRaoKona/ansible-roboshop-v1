@@ -69,3 +69,16 @@
       command: mvn clean package
       args:
         chdir: /app 
+
+    
+
+
+    - name: daemon reload
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+
+    - name: Enable and restart the shipping service 
+      ansible.builtin.service:
+        name: shipping
+        state: restarted
+        enabled: yes
