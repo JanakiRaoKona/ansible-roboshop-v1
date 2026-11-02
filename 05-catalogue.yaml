@@ -1,0 +1,50 @@
+- name: Configure catalogue server 
+  hosts: catalogue
+  become: yes 
+  tasks:
+    - name: disable the nodejs
+      command: dnf module disable nodejs -y
+    
+    # - name: enable nodejs 24 
+    #   command: dnf module enable nodejs:24 -y
+
+    - name:  enable nodejs 24  
+      ansible.builtin.service:
+        name: nodejs:24
+        enabled: yes
+    
+    - name: Install nodejs
+      ansible.builtin.service:
+        name: nodejs 
+        state: started 
+
+    - name: Create a user 'roboshop' with a /app directory
+      ansible.builtin.user:
+        name: roboshop
+        create_home: false 
+        home: /app
+        system: true 
+        shell: /sbin/nologin
+        comment: "roboshop system user"
+
+    - name: remove existing app directory
+      ansible.builtin.file:
+        path: /app
+        state: absent
+
+    - name: remove existing catalogue zip
+      ansible.builtin.file:
+        path: /tmp/catalogue.zip
+        state: absent
+
+    - name: Create app directory
+      ansible.builtin.file:
+        path: /app
+        state: present
+
+    - name: Download catalogue application 
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/catalogue-v4.zip
+        dest: /tmp/catalogue.zip
+
+    
