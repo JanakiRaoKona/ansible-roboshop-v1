@@ -5,6 +5,10 @@ mysql_root_password: RoboShop@1
 shipping_db_user: shipping
 shipping_d_password: RoboShop@1
 
+rabbitmq_user: roboshop
+rabbitmq_password: roboshop123
+
+
 mongodb_host: mongodb.janakiraodevops.online
 redis_host: redis.janakiraodevops.online  
 mysql_host: mysql.janakiraodevops.online 
