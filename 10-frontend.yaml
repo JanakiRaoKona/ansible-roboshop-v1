@@ -34,4 +34,24 @@
         state: absent
       loop: "{{ files_to_delete.files }}"
 
-    
+    - name: Download frontend application 
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/frontend-v4.zip
+        dest: /tmp/frontend.zip
+
+    - name:  unzip the file 
+      ansible.builtin.unarchive:
+        src: /tmp/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
+
+    - name: Copy frontend/roboshop service
+      ansible.builtin.template:
+        src: roboshop.conf.j2
+        dest: /etc/nginx/default.d/roboshop.conf 
+
+    - name: restart nginx 
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+        enabled: yes
