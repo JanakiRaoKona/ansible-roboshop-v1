@@ -18,9 +18,9 @@
 
     - name: Find all contents inside the directory
       ansible.builtin.find:
-        paths: /usr/share/nginx/html/*
-        recurse: yes
-        hidden: yes  # Ensures hidden files (.dotfiles) are caught
+        paths: /usr/share/nginx/html/
+        recurse: true
+        hidden: true  # Ensures hidden files (.dotfiles) are caught
         file_type: any
       register: files_to_delete
 
