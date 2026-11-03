@@ -1,5 +1,5 @@
 - name:  Configure payment service 
-  hosts: local 
+  hosts: payment
   become: yes 
   tasks:
     - name:  install python 3.14 & 3.14 pip 
