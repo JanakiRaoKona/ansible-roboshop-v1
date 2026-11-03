@@ -9,7 +9,7 @@
           - python3.14-pip
         state: present
 
-        - name: Create a user 'roboshop' with a /app directory
+    - name: Create a user 'roboshop' with a /app directory
       ansible.builtin.user:
         name: roboshop
         create_home: false 
